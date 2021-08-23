@@ -1,0 +1,6 @@
+-   id: sort-package-xml
+    name: Sort package.xml
+    language: python
+    entry: sort-package-xml
+    description: Sort package.xml
+    files: package.xml$
