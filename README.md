@@ -1,2 +1,2 @@
 # pre-commit-hooks-ros
-ros-related hooks for pre-commit &lt;https://pre-commit.com/>
+ros-related hooks for pre-commit <https://pre-commit.com/>
