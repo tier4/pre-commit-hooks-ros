@@ -112,6 +112,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser.add_argument('filenames', nargs='*', help='Filenames to fix')
     args = parser.parse_args(argv)
 
+    ret_val = 0
     for filename in args.filenames:
         with open(filename, 'r+') as f:
             lines = [line.rstrip() for line in f.readlines()]
@@ -121,9 +122,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 print(f'Fixing file `{filename}`')
                 f.seek(0)
                 f.write('\n'.join(new_lines) + '\n')
-                return 1
+                ret_val = 1
 
-    return 0
+    return ret_val
 
 
 if __name__ == '__main__':
