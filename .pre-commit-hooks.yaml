@@ -1,15 +1,15 @@
--   id: prettier-xml
-    name: Prettier XML
-    description: Apply prettier to package.xml
-    entry: prettier --write --list-different --ignore-unknown --print-width 1000 --xml-self-closing-space false
-    language: node
-    files: package.xml$
-    # Use plugin-xml@0.13.1 for xml-self-closing-space option
-    additional_dependencies: ["prettier@2.3.2", "@prettier/plugin-xml@0.13.1"]
+- id: prettier-xml
+  name: Prettier XML
+  description: Apply prettier to package.xml
+  entry: prettier --write --list-different --ignore-unknown --print-width 1000 --xml-self-closing-space false
+  language: node
+  files: package.xml$
+  # Use plugin-xml@0.13.1 for xml-self-closing-space option
+  additional_dependencies: ["prettier@2.3.2", "@prettier/plugin-xml@0.13.1"]
 
--   id: sort-package-xml
-    name: Sort package.xml
-    language: python
-    entry: sort-package-xml
-    description: Sort package.xml
-    files: package.xml$
+- id: sort-package-xml
+  name: Sort package.xml
+  language: python
+  entry: sort-package-xml
+  description: Sort package.xml
+  files: package.xml$
