@@ -34,7 +34,6 @@ jobs:
         with:
           token: ${{ steps.generate-token.outputs.token }}
           branch: update/pre-commit-autoupdate
-          branch-suffix: short-commit-hash
           title: Auto-update pre-commit hooks
           commit-message: Auto-update pre-commit hooks
           body: |
