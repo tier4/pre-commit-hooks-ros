@@ -1,5 +1,5 @@
-- id: prettier-xml
-  name: Prettier XML
+- id: prettier-package-xml
+  name: Prettier package.xml
   description: Apply prettier to package.xml
   entry: prettier --write --list-different --ignore-unknown --print-width 1000 --xml-self-closing-space false
   language: node
