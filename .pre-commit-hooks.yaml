@@ -4,8 +4,7 @@
   entry: prettier --write --list-different --ignore-unknown --print-width 1000 --xml-self-closing-space false
   language: node
   files: package.xml$
-  # Use plugin-xml@0.13.1 for xml-self-closing-space option
-  additional_dependencies: ["prettier@2.3.2", "@prettier/plugin-xml@0.13.1"]
+  additional_dependencies: ["prettier@2.4.1", "@prettier/plugin-xml@1.1.0"]
 
 - id: sort-package-xml
   name: Sort package.xml
