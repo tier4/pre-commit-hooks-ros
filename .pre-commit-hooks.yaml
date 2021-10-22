@@ -6,6 +6,14 @@
   files: .xacro$
   additional_dependencies: ["prettier@2.4.1", "@prettier/plugin-xml@1.1.0"]
 
+- id: prettier-launch-xml
+  name: Prettier launch.xml
+  description: Apply prettier to launch.xml
+  entry: prettier --write --list-different --ignore-unknown --print-width 200 --xml-self-closing-space false
+  language: node
+  files: launch.xml$
+  additional_dependencies: ["prettier@2.4.1", "@prettier/plugin-xml@1.1.0"]
+
 - id: prettier-package-xml
   name: Prettier package.xml
   description: Apply prettier to package.xml
