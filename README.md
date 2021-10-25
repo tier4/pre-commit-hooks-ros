@@ -9,8 +9,10 @@ Write your `.pre-commit-config.yaml` as below.
 ```yaml
 repos:
   - repo: https://github.com/tier4/pre-commit-hooks-ros
-    rev: v0.2.0
+    rev: v0.4.0
     hooks:
+      - id: prettier-xacro-xml
+      - id: prettier-launch-xml
       - id: prettier-package-xml
       - id: sort-package-xml
 ```
