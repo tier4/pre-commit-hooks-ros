@@ -11,7 +11,7 @@ repos:
   - repo: https://github.com/tier4/pre-commit-hooks-ros
     rev: v0.4.0
     hooks:
-      - id: prettier-xacro-xml
+      - id: prettier-xacro
       - id: prettier-launch-xml
       - id: prettier-package-xml
       - id: sort-package-xml
@@ -19,7 +19,7 @@ repos:
 
 ## Hooks available
 
-### prettier-xacro-xml
+### prettier-xacro
 
 Apply [Prettier][] with [plugin-xml][] to [xacro][].
 
