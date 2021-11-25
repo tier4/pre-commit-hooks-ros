@@ -33,7 +33,7 @@ Apply prettier to [package.xml](https://www.ros.org/reps/rep-0149.html).
 ### `sort-package-xml`
 
 Sort the dependent packages in [package.xml](https://www.ros.org/reps/rep-0149.html).
-If you want to exclude a tag from the sort, add `<! -- nolint -->` at the beginning of the line.
+If you want to exclude a tag from sorting, add `<! -- nolint -->` at the beginning of the line.
 
 Example
 
