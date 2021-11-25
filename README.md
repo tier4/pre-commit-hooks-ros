@@ -25,7 +25,7 @@ Apply prettier to [xacro](http://wiki.ros.org/xacro).
 
 ### `prettier-launch-xml`
 
-Apply prettier to launch.xml
+Apply prettier to [launch.xml](https://design.ros2.org/articles/roslaunch_xml.html).
 
 ### `prettier-package-xml`
 
