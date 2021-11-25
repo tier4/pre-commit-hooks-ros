@@ -21,15 +21,15 @@ repos:
 
 ### prettier-xacro-xml
 
-Apply [Prettier][] to [xacro][].
+Apply [Prettier][] with [plugin-xml][] to [xacro][].
 
 ### prettier-launch-xml
 
-Apply [Prettier][] to [launch.xml][].
+Apply [Prettier][] with [plugin-xml][] to [launch.xml][].
 
 ### prettier-package-xml
 
-Apply [Prettier][] to [package.xml][].
+Apply [Prettier][] with [plugin-xml][] to [package.xml][].
 
 ### sort-package-xml
 
@@ -45,6 +45,7 @@ If you want to exclude a tag from sorting, add `<! -- no format -->` at the begi
 [ros]: https://ros.org/
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [prettier]: https://prettier.io/
+[plugin-xml]: https://github.com/prettier/plugin-xml/
 [xacro]: http://wiki.ros.org/xacro
 [launch.xml]: https://design.ros2.org/articles/roslaunch_xml.html
 [package.xml]: https://www.ros.org/reps/rep-0149.html
