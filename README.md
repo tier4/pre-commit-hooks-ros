@@ -21,7 +21,7 @@ repos:
 
 ### `prettier-xacro-xml`
 
-Apply prettier to xacro.
+Apply prettier to [xacro](http://wiki.ros.org/xacro).
 
 ### `prettier-launch-xml`
 
