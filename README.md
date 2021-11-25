@@ -37,5 +37,5 @@ Sort the dependent packages in [package.xml](https://www.ros.org/reps/rep-0149.h
 If you want to exclude a tag from sorting, add `<! -- nolint -->` at the beginning of the line.
 
 ```xml
-<!-- nolint --> <depend>rclcpp</depend>
+<!-- no format --> <depend>rclcpp</depend>
 ```
