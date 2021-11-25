@@ -29,7 +29,7 @@ Apply prettier to [launch.xml](https://design.ros2.org/articles/roslaunch_xml.ht
 
 ### `prettier-package-xml`
 
-Apply prettier to package.xml
+Apply prettier to [package.xml](https://www.ros.org/reps/rep-0149.html).
 ### `sort-package-xml`
 
 Sorts the names contained in each tag in package.xml.
