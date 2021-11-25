@@ -35,7 +35,6 @@ Apply prettier to [package.xml](https://www.ros.org/reps/rep-0149.html).
 Sort the dependent packages in [package.xml](https://www.ros.org/reps/rep-0149.html).
 If you want to exclude a tag from sorting, add `<! -- nolint -->` at the beginning of the line.
 
-Example
 
 ```xml
 <!-- nolint --> <depend>rclcpp</depend>
