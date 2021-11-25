@@ -24,7 +24,7 @@
 
 - id: sort-package-xml
   name: Sort package.xml
-  language: python
-  entry: sort-package-xml
   description: Sort package.xml
+  entry: sort-package-xml
+  language: python
   files: package.xml$
