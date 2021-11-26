@@ -1,6 +1,6 @@
 # pre-commit-hooks-ros
 
-[ROS][]-related hooks for [pre-commit]
+[ROS]-related hooks for [pre-commit]
 
 ## Usage
 
@@ -21,19 +21,19 @@ repos:
 
 ### prettier-xacro
 
-Apply [Prettier][] with [plugin-xml][] to [xacro][].
+Apply [Prettier] with [plugin-xml] to [xacro].
 
 ### prettier-launch-xml
 
-Apply [Prettier][] with [plugin-xml][] to [launch.xml][].
+Apply [Prettier] with [plugin-xml] to [launch.xml].
 
 ### prettier-package-xml
 
-Apply [Prettier][] with [plugin-xml][] to [package.xml][].
+Apply [Prettier] with [plugin-xml] to [package.xml].
 
 ### sort-package-xml
 
-Sort the dependent packages in [package.xml][].
+Sort the dependent packages in [package.xml].
 If you want to exclude a tag from sorting, add `<! -- no format -->` at the beginning of the line.
 
 ```xml
