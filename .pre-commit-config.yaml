@@ -48,4 +48,3 @@ repos:
       - id: prettier
 
 exclude: ".svg"
-
