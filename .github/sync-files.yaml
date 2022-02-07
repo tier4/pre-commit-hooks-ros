@@ -13,5 +13,6 @@
 
 - repository: autowarefoundation/autoware-github-actions
   files:
+    - source: .github/workflows/actions-tagger.yaml
     - source: .github/workflows/github-release.yaml
     - source: cliff.toml
