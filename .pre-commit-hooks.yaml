@@ -28,3 +28,10 @@
   entry: sort-package-xml
   language: python
   files: package.xml$
+
+- id: ros-include-guard
+  name: check include guard
+  description: Check include guard macro name
+  entry: ros-include-guard
+  language: python
+  files: .*\.(h|hpp)$
