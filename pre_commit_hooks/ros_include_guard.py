@@ -17,14 +17,13 @@ import pathlib
 import re
 
 
-class Directive:
+class DirectiveBase:
 
   def __init__(self):
     self.line = None
     self.text = None
     self.expected = None
     self.tokens = None
-    self.nolint = False
 
   def update(self, line, text):
     self.line = line
@@ -34,30 +33,26 @@ class Directive:
     return self.line is None
 
   def mismatch(self):
-    if self.nolint: return False
     return self.text != self.expected
 
   def overwrite(self, lines):
-    if self.nolint: return
     lines[self.line] = self.expected
 
 
-class OpeningDirective(Directive):
+class OpeningDirective(DirectiveBase):
 
-  def prepare(self, macro_name, allow_nolint):
+  def prepare(self, macro_name):
     self.tokens = re.split(R'\b', self.text)
     if 4 <= len(self.tokens):
       self.tokens[3] = macro_name
       self.expected = ''.join(self.tokens)
-    self.nolint = allow_nolint and ('NOLINT' in self.tokens)
 
 
-class ClosingDirective(Directive):
+class ClosingDirective(DirectiveBase):
 
-  def prepare(self, macro_name, allow_nolint):
+  def prepare(self, macro_name):
     self.tokens = re.split(R'\b', self.text)
-    self.expected = '#endif  // {}'.format(macro_name)
-    self.nolint = allow_nolint and ('NOLINT' in self.tokens)
+    self.expected = F'#endif  // {macro_name}'
 
 
 class IncludeGuard:
@@ -82,8 +77,8 @@ class IncludeGuard:
   def overwrite(self, lines):
     return any(item.overwrite(lines) for item in self.items())
 
-  def prepare(self, macro_name, allow_nolint):
-    for item in self.items(): item.prepare(macro_name, allow_nolint)
+  def prepare(self, macro_name):
+    for item in self.items(): item.prepare(macro_name)
 
 
 def get_include_guard_info(lines):
@@ -101,7 +96,7 @@ def get_include_guard_info(lines):
   return guard
 
 
-def get_parts_after(parts: list, targets: set):
+def get_parts_after(parts, targets):
   result = []
   for part in reversed(parts):
     if part in targets:
@@ -110,20 +105,16 @@ def get_parts_after(parts: list, targets: set):
   return reversed(result)
 
 
-def get_include_guard_macro_name(filepath: pathlib.Path):
+def get_include_guard_macro_name(filepath):
   targets = {'include', 'src', 'test'}
-  for path in filepath.parents:
-      if path.joinpath('package.xml').exists():
-          parts = get_parts_after(filepath.relative_to(path).parts, targets)
-          return '__'.join(parts).replace('.', '_').upper() + '_'
-  return None
+  parts = get_parts_after(filepath.parts, targets)
+  return '__'.join(parts).replace('.', '_').upper() + '_'
 
 
 def main(argv=None):
 
   parser = argparse.ArgumentParser()
   parser.add_argument('filenames', nargs='*', help='Filenames to fix')
-  parser.add_argument('--allow-nolint', action='store_true', help='Allow nolint comment')
   args = parser.parse_args(argv)
 
   return_code = 0
@@ -139,7 +130,7 @@ def main(argv=None):
         return_code = 1
         print('No include guard in {}'.format(filepath))
         continue
-      guard.prepare(macro_name, args.allow_nolint)
+      guard.prepare(macro_name)
       if guard.mismatch():
         return_code = 1
         print('Fix include guard in {}'.format(filepath))
