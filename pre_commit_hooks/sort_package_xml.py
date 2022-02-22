@@ -36,20 +36,18 @@
 
 
 import argparse
-from typing import List
-from typing import Optional
-from typing import Sequence
 import re
+from typing import List, Optional, Sequence
 
 TAGS = [
-    '<build_depend>',
-    '<build_export_depend>',
-    '<buildtool_depend>',
-    '<buildtool_export_depend>',
-    '<exec_depend>',
-    '<depend>',
-    '<doc_depend>',
-    '<test_depend>',
+    "<build_depend>",
+    "<build_export_depend>",
+    "<buildtool_depend>",
+    "<buildtool_export_depend>",
+    "<exec_depend>",
+    "<depend>",
+    "<doc_depend>",
+    "<test_depend>",
 ]
 
 
@@ -82,7 +80,7 @@ def parse_tag(line: str) -> str:
     for tag in TAGS:
         if line.startswith(tag):
             return tag
-    return ''
+    return ""
 
 
 def parse_blocks(lines: List[str]) -> List[List[str]]:
@@ -103,29 +101,29 @@ def parse_blocks(lines: List[str]) -> List[List[str]]:
 
 
 def parse_content(line: str) -> str:
-    reg_obj = re.compile(r'<[^>]*?>')
-    return reg_obj.sub('', line)
+    reg_obj = re.compile(r"<[^>]*?>")
+    return reg_obj.sub("", line)
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument('filenames', nargs='*', help='Filenames to fix')
+    parser.add_argument("filenames", nargs="*", help="Filenames to fix")
     args = parser.parse_args(argv)
 
     ret_val = 0
     for filename in args.filenames:
-        with open(filename, 'r+') as f:
+        with open(filename, "r+") as f:
             lines = [line.rstrip() for line in f.readlines()]
             new_lines = sort(lines)
 
             if lines != new_lines:
-                print(f'Fixing file `{filename}`')
+                print(f"Fixing file `{filename}`")
                 f.seek(0)
-                f.write('\n'.join(new_lines) + '\n')
+                f.write("\n".join(new_lines) + "\n")
                 ret_val = 1
 
     return ret_val
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(main())
