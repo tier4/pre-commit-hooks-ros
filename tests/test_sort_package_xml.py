@@ -1,20 +1,31 @@
-import pathlib
 import pytest
+import shutil
+from pathlib import Path
 from pre_commit_hooks import sort_package_xml
 
-cases = [
-  ('package.ok.xml', 'package.ans.xml', 0),
-  ('package.ng.xml', 'package.ans.xml', 1),
+files = [
+  'package.xml',
 ]
 
-@pytest.mark.parametrize(('target_file', 'answer_file', 'answer_code'), cases)
-def test(target_file, answer_file, answer_code, datadir):
+cases = []
+for file in files:
+  cases.append((Path(file), 0))
+  cases.append((Path(file), 1))
 
+
+@pytest.mark.parametrize(('target_file', 'answer_code'), cases)
+def test(target_file, answer_code, datadir):
+
+  ok_ng = '.ng' if answer_code else '.ok'
+  source_file = target_file.with_suffix(ok_ng + target_file.suffix)
+  answer_file = target_file.with_suffix('.ok' + target_file.suffix)
   target_path = datadir.joinpath(target_file)
+  source_path = datadir.joinpath(source_file)
   answer_path = datadir.joinpath(answer_file)
-  return_code = sort_package_xml.main([str(target_path)])
-  target_text = pathlib.Path(target_path).read_text()
-  answer_text = pathlib.Path(answer_path).read_text()
+  shutil.copy(source_path, target_path)
 
+  return_code = sort_package_xml.main([str(target_path)])
+  target_text = target_path.read_text()
+  answer_text = answer_path.read_text()
   assert return_code == answer_code
   assert target_text == answer_text
