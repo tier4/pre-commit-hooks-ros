@@ -89,12 +89,12 @@ def split_space_boundary(text, delimiters={" "}):
     result = []
     prev = None
     for char in text:
-        curr = char in delimiters
-        if curr != prev:
+        current = char in delimiters
+        if current != prev:
             result.append(char)
         else:
             result[-1] += char
-        prev = curr
+        prev = current
     return result
 
 
