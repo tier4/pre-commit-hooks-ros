@@ -14,7 +14,6 @@
 
 import argparse
 import pathlib
-import re
 
 
 class DirectiveBase:
@@ -57,7 +56,6 @@ class ClosingDirective(DirectiveBase):
     self.tokens = split_space_boundary(self.text)
     if 5 <= len(self.tokens):
       self.tokens[4] = macro_name
-      print(self.tokens)
       self.expected = ''.join(self.tokens)
     else:
       self.expected = F'{self.directive}  // {macro_name}'
@@ -141,24 +139,27 @@ def main(argv=None):
 
   return_code = 0
   for filename in args.filenames:
+    # Search the include guard lines.
     filepath = pathlib.Path(filename)
+    lines = filepath.read_text().split('\n')
+    guard = get_include_guard_info(lines)
+    # Skip if the file using pragma once.
+    if guard.pragma:
+      continue
+    # Error if the include guard is not found.
+    if guard.is_none():
+      print('No include guard in {}'.format(filepath))
+      return_code = 1
+      continue
+    # Error and auto fix if the macro name is not correct.
     macro_name = get_include_guard_macro_name(filepath)
-    if macro_name:
-      lines = filepath.read_text().split('\n')
-      guard = get_include_guard_info(lines)
-      if guard.pragma:
-        continue
-      if guard.is_none():
-        return_code = 1
-        print('No include guard in {}'.format(filepath))
-        continue
-      guard.prepare(macro_name)
-      if guard.mismatch():
-        return_code = 1
-        print('Fix include guard in {}'.format(filepath))
-        guard.overwrite(lines)
-        filepath.write_text('\n'.join(lines))
-        continue
+    guard.prepare(macro_name)
+    if guard.mismatch():
+      print('Fix include guard in {}'.format(filepath))
+      return_code = 1
+      guard.overwrite(lines)
+      filepath.write_text('\n'.join(lines))
+      continue
 
   return return_code
 
