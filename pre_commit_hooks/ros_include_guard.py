@@ -19,7 +19,8 @@ import re
 
 class DirectiveBase:
 
-  def __init__(self):
+  def __init__(self, directive):
+    self.directive = directive
     self.line = None
     self.text = None
     self.expected = None
@@ -42,25 +43,32 @@ class DirectiveBase:
 class OpeningDirective(DirectiveBase):
 
   def prepare(self, macro_name):
-    self.tokens = re.split(R'\b', self.text)
-    if 4 <= len(self.tokens):
-      self.tokens[3] = macro_name
+    self.tokens = split_space_boundary(self.text)
+    if 3 <= len(self.tokens):
+      self.tokens[2] = macro_name
       self.expected = ''.join(self.tokens)
+    else:
+      self.expected = F'{self.directive} {macro_name}'
 
 
 class ClosingDirective(DirectiveBase):
 
   def prepare(self, macro_name):
-    self.tokens = re.split(R'\b', self.text)
-    self.expected = F'#endif  // {macro_name}'
+    self.tokens = split_space_boundary(self.text)
+    if 5 <= len(self.tokens):
+      self.tokens[4] = macro_name
+      print(self.tokens)
+      self.expected = ''.join(self.tokens)
+    else:
+      self.expected = F'{self.directive}  // {macro_name}'
 
 
 class IncludeGuard:
 
   def __init__(self):
-    self.ifndef = OpeningDirective()
-    self.define = OpeningDirective()
-    self.endif  = ClosingDirective()
+    self.ifndef = OpeningDirective('#ifndef')
+    self.define = OpeningDirective('#define')
+    self.endif  = ClosingDirective('#endif')
     self.pragma = False
 
   def items(self):
@@ -79,6 +87,20 @@ class IncludeGuard:
 
   def prepare(self, macro_name):
     for item in self.items(): item.prepare(macro_name)
+
+
+def split_space_boundary(text, delimiters={' '}):
+
+  result = []
+  prev = None
+  for char in text:
+    curr = char in delimiters
+    if curr != prev:
+      result.append(char)
+    else:
+      result[-1] += char
+    prev = curr
+  return result
 
 
 def get_include_guard_info(lines):
