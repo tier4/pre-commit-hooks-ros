@@ -37,7 +37,9 @@
 
 import argparse
 import re
-from typing import List, Optional, Sequence
+from typing import List
+from typing import Optional
+from typing import Sequence
 
 TAGS = [
     "<build_depend>",
