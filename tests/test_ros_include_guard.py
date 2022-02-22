@@ -1,38 +1,37 @@
-import pathlib
 import pytest
+import shutil
+from pathlib import Path
 from pre_commit_hooks import ros_include_guard
 
-rospkg1 = 'tests/resources/rospkg1/'
-rospkg2 = 'tests/resources/rospkg2/'
-rospkg3 = 'tests/resources/rospkg3/'
-
-files1 = [
+files = [
   'include/rospkg/foobar.h',
   'include/rospkg/foobar.hpp',
+  'include/rospkg/nolint.hpp',
   'src/foo_bar_baz.hpp',
   'src/foo_bar/baz.hpp',
   'src/foo/bar_baz.hpp',
   'src/foo/bar/baz.hpp',
 ]
 
-files2 = [
-  'include/rospkg/nolint.hpp',
-]
-
 cases = []
-for file in files1:
-  cases.append((rospkg1 + file, rospkg3 + file, 1))
-  cases.append((rospkg2 + file, rospkg3 + file, 0))
-for file in files2:
-  cases.append((rospkg2 + file, rospkg3 + file, 0))
+for file in files:
+  cases.append((Path(file), 0))
+  cases.append((Path(file), 1))
 
 
-@pytest.mark.parametrize(('target_file', 'answer_file', 'answer_code'), cases)
-def test(target_file, answer_file, answer_code):
+@pytest.mark.parametrize(('target_file', 'answer_code'), cases)
+def test(target_file, answer_code, datadir):
 
-    return_code = ros_include_guard.main([target_file])
-    target_text = pathlib.Path(target_file).read_text()
-    answer_text = pathlib.Path(answer_file).read_text()
+  ok_ng = '.ng' if answer_code else '.ok'
+  source_file = target_file.with_suffix(ok_ng + target_file.suffix)
+  answer_file = target_file.with_suffix('.ok' + target_file.suffix)
+  target_path = datadir.joinpath(target_file)
+  source_path = datadir.joinpath(source_file)
+  answer_path = datadir.joinpath(answer_file)
+  shutil.copy(source_path, target_path)
 
-    assert return_code == answer_code
-    assert target_text == answer_text
+  return_code = ros_include_guard.main([str(target_path)])
+  target_text = target_path.read_text()
+  answer_text = answer_path.read_text()
+  assert return_code == answer_code
+  assert target_text == answer_text
