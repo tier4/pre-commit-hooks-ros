@@ -44,7 +44,6 @@ If you want to exclude a tag from sorting, add `<! -- no format -->` at the begi
 ### ros-include-guard
 
 Fix the macro name of include guards.
-If you want to disable this check, use `--allow-nolint` option and comment `NOLINT` on the same line.
 
 <!-- Links -->
 

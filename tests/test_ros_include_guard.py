@@ -30,7 +30,7 @@ for file in files2:
 @pytest.mark.parametrize(('target_file', 'answer_file', 'answer_code'), cases)
 def test(target_file, answer_file, answer_code):
 
-    return_code = ros_include_guard.main([target_file, '--allow-nolint'])
+    return_code = ros_include_guard.main([target_file])
     target_text = pathlib.Path(target_file).read_text()
     answer_text = pathlib.Path(answer_file).read_text()
 
