@@ -55,6 +55,7 @@ TAGS = [
 
 def sort(lines: List[str]) -> List[str]:
     """Sort a XML file in alphabetical order, keeping blocks together.
+
     :param lines: array of strings
     :return: sorted array of strings
     """
@@ -87,6 +88,7 @@ def parse_tag(line: str) -> str:
 
 def parse_blocks(lines: List[str]) -> List[List[str]]:
     """Parse and return all possible blocks, popping off the start of `lines`.
+
     :param lines: list of lines
     :return: list of blocks, where each block is a list of lines
     """
