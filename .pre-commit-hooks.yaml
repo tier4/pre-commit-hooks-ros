@@ -4,7 +4,7 @@
   entry: prettier --write --list-different --ignore-unknown --print-width 120 --xml-self-closing-space false
   language: node
   files: .xacro$
-  additional_dependencies: ["prettier@2.4.1", "@prettier/plugin-xml@1.1.0"]
+  additional_dependencies: [prettier@2.4.1, "@prettier/plugin-xml@1.1.0"]
 
 - id: prettier-launch-xml
   name: prettier launch.xml
@@ -12,7 +12,7 @@
   entry: prettier --write --list-different --ignore-unknown --print-width 200 --xml-self-closing-space false
   language: node
   files: launch.xml$
-  additional_dependencies: ["prettier@2.4.1", "@prettier/plugin-xml@1.1.0"]
+  additional_dependencies: [prettier@2.4.1, "@prettier/plugin-xml@1.1.0"]
 
 - id: prettier-package-xml
   name: prettier package.xml
@@ -20,7 +20,7 @@
   entry: prettier --write --list-different --ignore-unknown --print-width 1000 --xml-self-closing-space false
   language: node
   files: package.xml$
-  additional_dependencies: ["prettier@2.4.1", "@prettier/plugin-xml@1.1.0"]
+  additional_dependencies: [prettier@2.4.1, "@prettier/plugin-xml@1.1.0"]
 
 - id: sort-package-xml
   name: sort package.xml
