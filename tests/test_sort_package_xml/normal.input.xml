@@ -3,23 +3,22 @@
 <package format="3">
   <name>rospkg</name>
   <version>0.0.0</version>
-  <description>The dummy package to test pre-commit hooks</description>
+  <description>The dummy package to test sort_package_xml</description>
   <maintainer email="isamu.takagi@tier4.jp">Takagi, Isamu</maintainer>
   <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>aaaaa</depend>
-  <depend>bbbbb</depend>
   <depend>ccccc</depend>
+  <depend>bbbbb</depend>
   <depend>ddddd</depend>
   <depend>eeeee</depend>
+  <depend>aaaaa</depend>
 
-  <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
+  <test_depend>ament_lint_auto</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
   </export>
-
 </package>
