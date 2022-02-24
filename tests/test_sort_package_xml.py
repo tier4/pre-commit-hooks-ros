@@ -31,3 +31,4 @@ def test(case: str, datadir: Path):
     # Re-format
     return_code = sort_package_xml.main([str(tmp_file)])
     assert return_code == 0
+    assert tmp_file.read_text() == answer_file.read_text()
