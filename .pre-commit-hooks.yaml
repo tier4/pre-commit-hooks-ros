@@ -1,5 +1,5 @@
 - id: prettier-xacro
-  name: Prettier xacro
+  name: prettier xacro
   description: Apply Prettier with plugin-xml to xacro.
   entry: prettier --write --list-different --ignore-unknown --print-width 120 --xml-self-closing-space false
   language: node
@@ -7,7 +7,7 @@
   additional_dependencies: [prettier@2.4.1, "@prettier/plugin-xml@1.1.0"]
 
 - id: prettier-launch-xml
-  name: Prettier launch.xml
+  name: prettier launch.xml
   description: Apply Prettier with plugin-xml to launch.xml.
   entry: prettier --write --list-different --ignore-unknown --print-width 200 --xml-self-closing-space false
   language: node
@@ -15,7 +15,7 @@
   additional_dependencies: [prettier@2.4.1, "@prettier/plugin-xml@1.1.0"]
 
 - id: prettier-package-xml
-  name: Prettier package.xml
+  name: prettier package.xml
   description: Apply Prettier with plugin-xml to package.xml.
   entry: prettier --write --list-different --ignore-unknown --print-width 1000 --xml-self-closing-space false
   language: node
@@ -23,7 +23,7 @@
   additional_dependencies: [prettier@2.4.1, "@prettier/plugin-xml@1.1.0"]
 
 - id: sort-package-xml
-  name: Sort package.xml
+  name: sort package.xml
   description: Sort the dependent packages in package.xml.
   entry: sort-package-xml
   language: python
