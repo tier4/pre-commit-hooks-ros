@@ -22,7 +22,6 @@ class DirectiveBase:
         self.line = None
         self.text = None
         self.expected = None
-        self.tokens = None
 
     def update(self, line, text):
         self.line = line
@@ -40,22 +39,16 @@ class DirectiveBase:
 
 class OpeningDirective(DirectiveBase):
     def prepare(self, macro_name):
-        self.tokens = split_space_boundary(self.text)
-        if 3 <= len(self.tokens):  # 3 is len(directive, space, macro_name)
-            self.tokens[2] = macro_name
-            self.expected = "".join(self.tokens)
-        else:
-            self.expected = f"{self.directive} {macro_name}"
+        self.expected = f"{self.directive} {macro_name}"
+        if "// NOLINT" in self.text:
+            self.expected += "  // NOLINT"
 
 
 class ClosingDirective(DirectiveBase):
     def prepare(self, macro_name):
-        self.tokens = split_space_boundary(self.text)
-        if 5 <= len(self.tokens):  # 5 is len(directive, space, //, space, macro_name)
-            self.tokens[4] = macro_name
-            self.expected = "".join(self.tokens)
-        else:
-            self.expected = f"{self.directive}  // {macro_name}"
+        self.expected = f"{self.directive}  // {macro_name}"
+        if "// NOLINT" in self.text:
+            self.expected += "  // NOLINT"
 
 
 class IncludeGuard:
@@ -82,20 +75,6 @@ class IncludeGuard:
     def prepare(self, macro_name):
         for item in self.items():
             item.prepare(macro_name)
-
-
-def split_space_boundary(text, delimiters={" "}):
-
-    result = []
-    prev = None
-    for char in text:
-        current = char in delimiters
-        if current != prev:
-            result.append(char)
-        else:
-            result[-1] += char
-        prev = current
-    return result
 
 
 def get_include_guard_info(lines):
