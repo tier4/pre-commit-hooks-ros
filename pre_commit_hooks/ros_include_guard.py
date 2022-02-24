@@ -140,16 +140,8 @@ def main(argv=None):
         filepath = Path(filename)
         lines = filepath.read_text().split("\n")
         guard = get_include_guard_info(lines)
-        # Error if there are include guard and pragma once.
-        if guard.has_pragma_once and not guard.is_none():
-            print("There are include guard and pragma once in {}".format(filepath))
-            return_code = 1
-            continue
-        # Skip if the file uses pragma once.
-        if guard.has_pragma_once:
-            continue
         # Error if the include guard is not found.
-        if guard.is_none():
+        if guard.is_none() and not guard.has_pragma_once:
             print("No include guard in {}".format(filepath))
             return_code = 1
             continue
