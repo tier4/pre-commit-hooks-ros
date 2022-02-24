@@ -41,7 +41,7 @@ class DirectiveBase:
 class OpeningDirective(DirectiveBase):
     def prepare(self, macro_name):
         self.tokens = split_space_boundary(self.text)
-        if 3 <= len(self.tokens):
+        if 3 <= len(self.tokens):  # 3 is len(directive, space, macro_name)
             self.tokens[2] = macro_name
             self.expected = "".join(self.tokens)
         else:
@@ -51,7 +51,7 @@ class OpeningDirective(DirectiveBase):
 class ClosingDirective(DirectiveBase):
     def prepare(self, macro_name):
         self.tokens = split_space_boundary(self.text)
-        if 5 <= len(self.tokens):
+        if 5 <= len(self.tokens):  # 5 is len(directive, space, //, space, macro_name)
             self.tokens[4] = macro_name
             self.expected = "".join(self.tokens)
         else:
@@ -63,7 +63,7 @@ class IncludeGuard:
         self.ifndef = OpeningDirective("#ifndef")
         self.define = OpeningDirective("#define")
         self.endif = ClosingDirective("#endif")
-        self.pragma = False
+        self.has_pragma_once = False
 
     def items(self):
         yield self.ifndef
@@ -103,7 +103,7 @@ def get_include_guard_info(lines):
     guard = IncludeGuard()
     for line, text in enumerate(lines):
         if text.startswith("#pragma once"):
-            guard.pragma = True
+            guard.has_pragma_once = True
         if text.startswith("#ifndef") and guard.ifndef.is_none():
             guard.ifndef.update(line, text)
         if text.startswith("#define") and guard.define.is_none():
@@ -140,8 +140,13 @@ def main(argv=None):
         filepath = pathlib.Path(filename)
         lines = filepath.read_text().split("\n")
         guard = get_include_guard_info(lines)
-        # Skip if the file using pragma once.
-        if guard.pragma:
+        # Error if there are include guard and pragma once.
+        if guard.has_pragma_once and not guard.is_none():
+            print("There are include guard and pragma once in {}".format(filepath))
+            return_code = 1
+            continue
+        # Skip if the file uses pragma once.
+        if guard.has_pragma_once:
             continue
         # Error if the include guard is not found.
         if guard.is_none():
