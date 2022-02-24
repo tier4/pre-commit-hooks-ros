@@ -15,6 +15,7 @@ repos:
       - id: prettier-launch-xml
       - id: prettier-package-xml
       - id: sort-package-xml
+      - id: ros-include-guard
 ```
 
 ## Hooks available
@@ -39,6 +40,10 @@ If you want to exclude a tag from sorting, add `<! -- no format -->` at the begi
 ```xml
 <!-- no format --> <depend>rclcpp</depend>
 ```
+
+### ros-include-guard
+
+Fix the macro name of include guards.
 
 <!-- Links -->
 
