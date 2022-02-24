@@ -13,7 +13,7 @@
 # limitations under the License.
 
 import argparse
-import pathlib
+from pathlib import Path
 
 
 class DirectiveBase:
@@ -137,7 +137,7 @@ def main(argv=None):
     return_code = 0
     for filename in args.filenames:
         # Search the include guard lines.
-        filepath = pathlib.Path(filename)
+        filepath = Path(filename)
         lines = filepath.read_text().split("\n")
         guard = get_include_guard_info(lines)
         # Error if there are include guard and pragma once.
