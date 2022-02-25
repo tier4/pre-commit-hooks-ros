@@ -120,9 +120,10 @@ def main(argv=None):
         lines = filepath.read_text().split("\n")
         guard = get_include_guard_info(lines)
         # Error if the include guard is not found.
-        if guard.is_none() and not guard.has_pragma_once:
-            print("No include guard in {}".format(filepath))
-            return_code = 1
+        if guard.is_none():
+            if not guard.has_pragma_once:
+                print("No include guard in {}".format(filepath))
+                return_code = 1
             continue
         # Error and auto fix if the macro name is not correct.
         macro_name = get_include_guard_macro_name(filepath)
