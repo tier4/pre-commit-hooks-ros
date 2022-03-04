@@ -12,6 +12,10 @@
     - source: .prettierrc.yaml
     - source: .yamllint.yaml
 
+- repository: autowarefoundation/autoware_common
+  files:
+    - source: .github/workflows/sync-files.yaml
+
 - repository: autowarefoundation/autoware-github-actions
   files:
     - source: .github/workflows/actions-tagger.yaml
