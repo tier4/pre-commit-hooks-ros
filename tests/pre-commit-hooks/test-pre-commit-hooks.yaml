@@ -1,0 +1,14 @@
+repos:
+  - repo: .
+    rev: HEAD
+    hooks:
+      - id: prettier-xacro
+        files: tests/pre-commit-hooks/prettier-xacro/.*
+      - id: prettier-launch-xml
+        files: tests/pre-commit-hooks/prettier-launch-xml/.*
+      - id: prettier-package-xml
+        files: tests/pre-commit-hooks/prettier-package-xml/.*
+      - id: sort-package-xml
+        files: tests/pre-commit-hooks/sort-package-xml/.*
+      - id: ros-include-guard
+        files: tests/pre-commit-hooks/ros-include-guard/.*
