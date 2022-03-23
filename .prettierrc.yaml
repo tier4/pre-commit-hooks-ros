@@ -15,6 +15,6 @@ overrides:
 
   - files: "*.xacro"
     options:
-      printWidth: 120
+      printWidth: 200
       xmlSelfClosingSpace: false
       xmlWhitespaceSensitivity: ignore
