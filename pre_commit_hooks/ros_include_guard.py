@@ -1,4 +1,4 @@
-# Copyright 2022 Tier IV, Inc. All rights reserved.
+# Copyright 2022 TIER IV, Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -110,13 +110,12 @@ def get_include_guard_macro_name(filepath):
 def main(argv=None):
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("filenames", nargs="*", help="Filenames to fix")
+    parser.add_argument("filenames", nargs="*", type=Path, help="Filenames to fix")
     args = parser.parse_args(argv)
 
     return_code = 0
-    for filename in args.filenames:
+    for filepath in args.filenames:
         # Search the include guard lines.
-        filepath = Path(filename)
         lines = filepath.read_text().split("\n")
         guard = get_include_guard_info(lines)
         # Error if the include guard is not found.
