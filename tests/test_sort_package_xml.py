@@ -1,6 +1,5 @@
 from pathlib import Path
 import shutil
-from tempfile import NamedTemporaryFile
 
 import pytest
 
@@ -14,12 +13,12 @@ from pre_commit_hooks import sort_package_xml
         "no-format",
     ],
 )
-def test(case: str, datadir: Path):
+def test(case: str, datadir: Path, tmp_path: Path):
     input_file = datadir / f"{case}.input.xml"
     answer_file = datadir / f"{case}.answer.xml"
 
     # Create a temporary file to prevent overwriting original files
-    tmp_file = Path(NamedTemporaryFile(mode="w", suffix=".xml").name)
+    tmp_file = tmp_path / f"{case}.input.xml"
     shutil.copy(input_file, tmp_file)
 
     # Format
