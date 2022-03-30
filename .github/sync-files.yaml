@@ -5,6 +5,7 @@
     - source: .github/workflows/pre-commit-optional.yaml
     - source: .github/workflows/semantic-pull-request.yaml
     - source: .github/workflows/spell-check-differential.yaml
+    - source: .github/workflows/sync-files.yaml
     - source: .clang-format
     - source: .markdown-link-check.json
     - source: .markdownlint.yaml
@@ -13,12 +14,7 @@
     - source: .prettierrc.yaml
     - source: .yamllint.yaml
 
-- repository: autowarefoundation/autoware_common
-  files:
-    - source: .github/workflows/sync-files.yaml
-
 - repository: autowarefoundation/autoware-github-actions
   files:
-    - source: .github/workflows/actions-tagger.yaml
     - source: .github/workflows/github-release.yaml
     - source: cliff.toml
