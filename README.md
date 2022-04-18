@@ -47,10 +47,10 @@ If you want to exclude a tag from sorting, add `<! -- no format -->` at the begi
 
 <!-- Links -->
 
-[ros]: https://ros.org/
-[pre-commit]: https://github.com/pre-commit/pre-commit
-[prettier]: https://prettier.io/
-[plugin-xml]: https://github.com/prettier/plugin-xml/
-[xacro]: http://wiki.ros.org/xacro
 [launch.xml]: https://design.ros2.org/articles/roslaunch_xml.html
 [package.xml]: https://www.ros.org/reps/rep-0149.html
+[plugin-xml]: https://github.com/prettier/plugin-xml/
+[pre-commit]: https://github.com/pre-commit/pre-commit
+[prettier]: https://prettier.io/
+[ros]: https://ros.org/
+[xacro]: http://wiki.ros.org/xacro
