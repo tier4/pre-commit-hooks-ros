@@ -4,7 +4,7 @@
   entry: flake8
   language: python
   types: [python]
-  # require_serial: true
+  require_serial: true
   additional_dependencies:
     [
       flake8==4.0.1,
