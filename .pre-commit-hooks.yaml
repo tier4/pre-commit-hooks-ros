@@ -1,3 +1,4 @@
+# Modified from https://github.com/PyCQA/flake8/blob/463d9b1ce9ee44665f2c6825edd7010ef5dff760/.pre-commit-hooks.yaml
 - id: flake8-ros
   name: flake8 ros
   description: Apply flake8 with the ROS 2 settings.
