@@ -14,3 +14,14 @@ jobs:
         uses: autowarefoundation/autoware-github-actions/pre-commit@v1
         with:
           pre-commit-config: tests/pre-commit-hooks/test-pre-commit-hooks.yaml
+
+      - name: Try pre-commit
+        run: |
+          pre-commit try-repo https://github.com/tier4/pre-commit-hooks-ros flake8-ros -a --ref ${{ github.ref }}
+
+      - name: Try pre-commit with fault injected
+        run: |
+          echo "import os" >> pre_commit_hooks/sort_package_xml.py
+          if pre-commit try-repo https://github.com/tier4/pre-commit-hooks-ros flake8-ros -a --ref ${{ github.ref }}; then
+              exit 1
+          fi

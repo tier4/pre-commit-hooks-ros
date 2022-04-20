@@ -9,8 +9,9 @@ Write your `.pre-commit-config.yaml` as below.
 ```yaml
 repos:
   - repo: https://github.com/tier4/pre-commit-hooks-ros
-    rev: v0.6.0
+    rev: v0.7.0
     hooks:
+      - id: flake8-ros
       - id: prettier-xacro
       - id: prettier-launch-xml
       - id: prettier-package-xml
@@ -19,6 +20,10 @@ repos:
 ```
 
 ## Hooks available
+
+### flake8-ros
+
+Apply [flake8] with the [ROS 2 settings](https://docs.ros.org/en/rolling/Installation/Ubuntu-Development-Setup.html#install-development-tools-and-ros-tools).
 
 ### prettier-xacro
 
@@ -47,6 +52,7 @@ If you want to exclude a tag from sorting, add `<! -- no format -->` at the begi
 
 <!-- Links -->
 
+[flake8]: https://github.com/PyCQA/flake8
 [launch.xml]: https://design.ros2.org/articles/roslaunch_xml.html
 [package.xml]: https://www.ros.org/reps/rep-0149.html
 [plugin-xml]: https://github.com/prettier/plugin-xml/
