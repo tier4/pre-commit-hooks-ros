@@ -9,7 +9,7 @@ Write your `.pre-commit-config.yaml` as below.
 ```yaml
 repos:
   - repo: https://github.com/tier4/pre-commit-hooks-ros
-    rev: v0.6.0
+    rev: v0.7.0
     hooks:
       - id: flake8-ros
       - id: prettier-xacro
