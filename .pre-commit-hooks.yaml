@@ -22,16 +22,16 @@
   files: package.xml$
   additional_dependencies: [prettier@2.6.2, "@prettier/plugin-xml@2.0.1"]
 
-- id: sort-package-xml
-  name: sort package.xml
-  description: Sort the dependent packages in package.xml.
-  entry: sort-package-xml
-  language: python
-  files: package.xml$
-
 - id: ros-include-guard
   name: fix include guard
   description: Fix the include guard macro name.
   entry: ros-include-guard
   language: python
   files: .*\.(h|hpp)$
+
+- id: sort-package-xml
+  name: sort package.xml
+  description: Sort the dependent packages in package.xml.
+  entry: sort-package-xml
+  language: python
+  files: package.xml$
