@@ -60,7 +60,7 @@ jobs:
         id: get-prettier-versions
         run: |
           function get-latest-npm-version() {
-            npm show "@prettier/plugin-xml" version
+            npm show "$1" version
           }
 
           echo ::set-output name=prettier-version::$(get-latest-npm-version prettier)
