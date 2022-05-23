@@ -25,7 +25,7 @@
   entry: prettier --write --list-different --ignore-unknown --print-width 200 --xml-self-closing-space false --xml-whitespace-sensitivity ignore
   language: node
   files: .xacro$
-  additional_dependencies: [prettier@2.6.2, "@prettier/plugin-xml@2.0.1"]
+  additional_dependencies: [prettier@2.6.2, "@prettier/plugin-xml@2.2.0"]
 
 - id: prettier-launch-xml
   name: prettier launch.xml
@@ -33,7 +33,7 @@
   entry: prettier --write --list-different --ignore-unknown --print-width 200 --xml-self-closing-space false --xml-whitespace-sensitivity ignore
   language: node
   files: launch.xml$
-  additional_dependencies: [prettier@2.6.2, "@prettier/plugin-xml@2.0.1"]
+  additional_dependencies: [prettier@2.6.2, "@prettier/plugin-xml@2.2.0"]
 
 - id: prettier-package-xml
   name: prettier package.xml
@@ -41,7 +41,7 @@
   entry: prettier --write --list-different --ignore-unknown --print-width 1000 --xml-self-closing-space false --xml-whitespace-sensitivity ignore
   language: node
   files: package.xml$
-  additional_dependencies: [prettier@2.6.2, "@prettier/plugin-xml@2.0.1"]
+  additional_dependencies: [prettier@2.6.2, "@prettier/plugin-xml@2.2.0"]
 
 - id: ros-include-guard
   name: fix include guard
