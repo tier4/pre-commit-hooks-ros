@@ -12,7 +12,7 @@
   <depend>aaaaa</depend>
   <depend>bbbbb</depend>
   <depend>ccccc</depend>
-  <depend>ddddd</depend>
+  <depend condition="$ROS_VERSION == 1">ddddd</depend>
   <depend>eeeee</depend>
 
   <test_depend>ament_lint_auto</test_depend>

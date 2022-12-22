@@ -11,7 +11,7 @@
 
   <depend>ccccc</depend>
   <depend>bbbbb</depend>
-  <depend>ddddd</depend>
+  <depend condition="$ROS_VERSION == 1">ddddd</depend>
   <depend>eeeee</depend>
   <depend>aaaaa</depend>
 

@@ -41,15 +41,16 @@ from typing import List
 from typing import Optional
 from typing import Sequence
 
+# Closing bracket absent as conditions can be present within the xml tag
 TAGS = [
-    "<build_depend>",
-    "<build_export_depend>",
-    "<buildtool_depend>",
-    "<buildtool_export_depend>",
-    "<exec_depend>",
-    "<depend>",
-    "<doc_depend>",
-    "<test_depend>",
+    "<build_depend",
+    "<build_export_depend",
+    "<buildtool_depend",
+    "<buildtool_export_depend",
+    "<exec_depend",
+    "<depend",
+    "<doc_depend",
+    "<test_depend",
 ]
 
 
