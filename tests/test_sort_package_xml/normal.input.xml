@@ -4,7 +4,7 @@
   <name>rospkg</name>
   <version>0.0.0</version>
   <description>The dummy package to test sort_package_xml</description>
-  <maintainer email="isamu.takagi@tier4.jp">Takagi, Isamu</maintainer>
+  <maintainer email="foo.bar@example.com">Foo Bar</maintainer>
   <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
