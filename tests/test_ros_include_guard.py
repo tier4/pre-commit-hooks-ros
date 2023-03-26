@@ -23,7 +23,6 @@ cases_no_fix = [
 
 @pytest.mark.parametrize(("target_file"), cases_auto_fix)
 def test_auto_fix(target_file, datadir):
-
     target_path = datadir.joinpath(target_file)
     right_path = target_path.with_suffix(".right" + target_path.suffix)
     wrong_path = target_path.with_suffix(".wrong" + target_path.suffix)
@@ -43,7 +42,6 @@ def test_auto_fix(target_file, datadir):
 
 @pytest.mark.parametrize(("target_file", "answer_code"), cases_no_fix)
 def test_no_fix(target_file, answer_code, datadir):
-
     target_path = datadir.joinpath(target_file)
     return_code = ros_include_guard.main([str(target_path)])
     assert return_code == answer_code
