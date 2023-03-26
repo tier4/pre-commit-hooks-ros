@@ -78,7 +78,6 @@ class IncludeGuard:
 
 
 def get_include_guard_info(lines):
-
     guard = IncludeGuard()
     for line, text in enumerate(lines):
         if text.startswith("#pragma once"):
@@ -108,7 +107,6 @@ def get_include_guard_macro_name(filepath):
 
 
 def main(argv=None):
-
     parser = argparse.ArgumentParser()
     parser.add_argument("filenames", nargs="*", type=Path, help="Filenames to fix")
     args = parser.parse_args(argv)
