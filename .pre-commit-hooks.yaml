@@ -10,11 +10,11 @@
     [
       flake8==6.0.0,
       flake8-blind-except==0.2.1,
-      flake8-builtins==2.0.1,
+      flake8-builtins==2.1.0,
       flake8-class-newline==1.6.0,
-      flake8-comprehensions==3.10.1,
+      flake8-comprehensions==3.11.1,
       flake8-deprecated==2.0.1,
-      flake8-docstrings==1.6.0,
+      flake8-docstrings==1.7.0,
       flake8-import-order==0.18.2,
       flake8-quotes==3.3.2,
     ]
@@ -25,7 +25,7 @@
   entry: prettier --write --list-different --ignore-unknown --print-width 200 --xml-self-closing-space false --xml-whitespace-sensitivity ignore
   language: node
   files: .xacro$
-  additional_dependencies: [prettier@2.8.1, "@prettier/plugin-xml@2.2.0"]
+  additional_dependencies: [prettier@2.8.7, "@prettier/plugin-xml@2.2.0"]
 
 - id: prettier-launch-xml
   name: prettier launch.xml
@@ -33,7 +33,7 @@
   entry: prettier --write --list-different --ignore-unknown --print-width 200 --xml-self-closing-space false --xml-whitespace-sensitivity ignore
   language: node
   files: launch.xml$
-  additional_dependencies: [prettier@2.8.1, "@prettier/plugin-xml@2.2.0"]
+  additional_dependencies: [prettier@2.8.7, "@prettier/plugin-xml@2.2.0"]
 
 - id: prettier-package-xml
   name: prettier package.xml
@@ -41,7 +41,7 @@
   entry: prettier --write --list-different --ignore-unknown --print-width 1000 --xml-self-closing-space false --xml-whitespace-sensitivity ignore
   language: node
   files: package.xml$
-  additional_dependencies: [prettier@2.8.1, "@prettier/plugin-xml@2.2.0"]
+  additional_dependencies: [prettier@2.8.7, "@prettier/plugin-xml@2.2.0"]
 
 - id: ros-include-guard
   name: fix include guard
