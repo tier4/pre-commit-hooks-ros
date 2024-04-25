@@ -8,7 +8,7 @@
   require_serial: true
   additional_dependencies:
     [
-      flake8==6.0.0,
+      flake8==6.1.0,
       flake8-blind-except==0.2.1,
       flake8-builtins==2.0.1,
       flake8-class-newline==1.6.0,
