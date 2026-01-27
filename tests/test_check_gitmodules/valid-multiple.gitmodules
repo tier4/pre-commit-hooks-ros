@@ -1,0 +1,12 @@
+[submodule "external/lib1"]
+	path = external/lib1
+	url = https://github.com/org/lib1.git
+	branch = develop
+[submodule "external/lib2"]
+	path = external/lib2
+	url = https://github.com/org/lib2.git
+	update = none
+[submodule "third_party/lib3"]
+	path = third_party/lib3
+	url = https://github.com/other/lib3.git
+	branch = v2.0

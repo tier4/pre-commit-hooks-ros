@@ -1,0 +1,11 @@
+[submodule "valid/one"]
+	path = valid/one
+	url = https://github.com/example/repo1.git
+	branch = main
+[submodule "invalid"]
+	path = invalid
+	url = https://github.com/example/repo2.git
+[submodule "valid/two"]
+	path = valid/two
+	url = https://github.com/example/repo3.git
+	update = none

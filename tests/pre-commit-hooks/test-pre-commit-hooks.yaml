@@ -1,14 +1,9 @@
 repos:
-  - repo: .
-    rev: HEAD
+  - repo: local
     hooks:
-      - id: prettier-xacro
-        files: tests/pre-commit-hooks/prettier-xacro/.*
-      - id: prettier-launch-xml
-        files: tests/pre-commit-hooks/prettier-launch-xml/.*
-      - id: prettier-package-xml
-        files: tests/pre-commit-hooks/prettier-package-xml/.*
-      - id: ros-include-guard
-        files: tests/pre-commit-hooks/ros-include-guard/.*
-      - id: sort-package-xml
-        files: tests/pre-commit-hooks/sort-package-xml/.*
+      - id: check-gitmodules
+        name: check gitmodules
+        entry: check-gitmodules
+        language: system
+        files: \.gitmodules$
+        pass_filenames: false

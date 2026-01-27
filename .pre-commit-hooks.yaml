@@ -1,58 +1,7 @@
-# Modified from https://github.com/PyCQA/flake8/blob/463d9b1ce9ee44665f2c6825edd7010ef5dff760/.pre-commit-hooks.yaml
-- id: flake8-ros
-  name: flake8 ros
-  description: Apply flake8 with the ROS 2 settings.
-  entry: flake8
+- id: check-gitmodules
+  name: check gitmodules
+  description: Check .gitmodules for proper submodule configuration (name matches path, has branch or update=none).
+  entry: check-gitmodules
   language: python
-  types: [python]
-  require_serial: true
-  additional_dependencies:
-    [
-      flake8==6.1.0,
-      flake8-blind-except==0.2.1,
-      flake8-builtins==2.1.0,
-      flake8-class-newline==1.6.0,
-      flake8-comprehensions==3.12.0,
-      flake8-deprecated==2.0.1,
-      flake8-docstrings==1.7.0,
-      flake8-import-order==0.18.2,
-      flake8-quotes==3.3.2,
-    ]
-
-- id: prettier-xacro
-  name: prettier xacro
-  description: Apply Prettier with plugin-xml to xacro.
-  entry: prettier --write --list-different --ignore-unknown --print-width 200 --xml-self-closing-space false --xml-whitespace-sensitivity ignore
-  language: node
-  files: .xacro$
-  additional_dependencies: [prettier@2.8.7, "@prettier/plugin-xml@2.2.0"]
-
-- id: prettier-launch-xml
-  name: prettier launch.xml
-  description: Apply Prettier with plugin-xml to launch.xml.
-  entry: prettier --write --list-different --ignore-unknown --print-width 200 --xml-self-closing-space false --xml-whitespace-sensitivity ignore
-  language: node
-  files: launch.xml$
-  additional_dependencies: [prettier@2.8.7, "@prettier/plugin-xml@2.2.0"]
-
-- id: prettier-package-xml
-  name: prettier package.xml
-  description: Apply Prettier with plugin-xml to package.xml.
-  entry: prettier --write --list-different --ignore-unknown --print-width 1000 --xml-self-closing-space false --xml-whitespace-sensitivity ignore
-  language: node
-  files: package.xml$
-  additional_dependencies: [prettier@2.8.7, "@prettier/plugin-xml@2.2.0"]
-
-- id: ros-include-guard
-  name: fix include guard
-  description: Fix the include guard macro name.
-  entry: ros-include-guard
-  language: python
-  files: .*\.(h|hpp)$
-
-- id: sort-package-xml
-  name: sort package.xml
-  description: Sort the dependent packages in package.xml.
-  entry: sort-package-xml
-  language: python
-  files: package.xml$
+  files: \.gitmodules$
+  pass_filenames: false

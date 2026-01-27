@@ -1,0 +1,4 @@
+[submodule "wrong_name"]
+	path = foo/bar
+	url = https://github.com/example/repo.git
+	branch = main

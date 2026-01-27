@@ -1,0 +1,5 @@
+[submodule "foo/bar"]
+	path = foo/bar
+	url = https://github.com/example/repo.git
+	branch = main
+	update = none
