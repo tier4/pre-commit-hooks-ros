@@ -3,5 +3,21 @@
   description: Check .gitmodules for proper submodule configuration (name matches path, has branch or update=none).
   entry: check-gitmodules
   language: python
-  files: \.gitmodules$
+  files: ^\.gitmodules$
+  pass_filenames: false
+
+- id: check-submodules-branch
+  name: check submodules branch
+  description: Check submodules with branch field are ancestors of remote branch head.
+  entry: check-submodules-branch
+  language: python
+  files: ^\.gitmodules$
+  pass_filenames: false
+
+- id: sync-repos-files
+  name: sync repos files
+  description: Sync .repos files with submodules for vcstool compatibility.
+  entry: sync-repos-files
+  language: python
+  files: (^\.gitmodules$|\.repos$|^src/)
   pass_filenames: false

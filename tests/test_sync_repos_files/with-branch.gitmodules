@@ -1,0 +1,4 @@
+[submodule "src/core/package1"]
+	path = src/core/package1
+	url = https://github.com/example/package1.git
+	branch = main

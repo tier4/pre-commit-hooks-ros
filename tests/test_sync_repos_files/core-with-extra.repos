@@ -1,0 +1,10 @@
+repositories:
+  package1:
+    type: git
+    url: https://github.com/example/package1.git
+    branch: main
+    version: old123
+  extra_package:
+    type: git
+    url: https://github.com/example/extra.git
+    version: xyz789

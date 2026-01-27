@@ -1,0 +1,6 @@
+repositories:
+  package1:
+    type: git
+    url: https://github.com/example/package1.git
+    branch: main
+    version: abc123def456

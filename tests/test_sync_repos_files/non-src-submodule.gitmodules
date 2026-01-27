@@ -1,0 +1,4 @@
+[submodule "external/lib"]
+	path = external/lib
+	url = https://github.com/example/lib.git
+	branch = main
