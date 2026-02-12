@@ -8,6 +8,7 @@
   require_serial: true
   additional_dependencies:
     [
+      setuptools,
       flake8==6.1.0,
       flake8-blind-except==0.2.1,
       flake8-builtins==2.1.0,
