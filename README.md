@@ -54,7 +54,7 @@ If you want to exclude a tag from sorting, add `<! -- no format -->` at the begi
 
 [flake8]: https://github.com/PyCQA/flake8
 [launch.xml]: https://design.ros2.org/articles/roslaunch_xml.html
-[package.xml]: https://www.ros.org/reps/rep-0149.html
+[package.xml]: https://reps.openrobotics.org/rep-0149/
 [plugin-xml]: https://github.com/prettier/plugin-xml/
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [prettier]: https://prettier.io/
