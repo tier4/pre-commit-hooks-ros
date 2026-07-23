@@ -79,26 +79,22 @@ class IncludeGuard:
 
 def get_include_guard_info(lines):
     guard = IncludeGuard()
-    content_lines = [(line, text) for line, text in enumerate(lines) if text.strip()))
-    
+    content_lines = [(line, text) for line, text in enumerate(lines) if text.strip()]
+
     if not content_lines:
         return guard
 
-    guard.has_pragma_once = any(
-            text.startswith("#pragma once") 
-            for _, text 
-            in enumerate(content_lines)
-    )
+    guard.has_pragma_once = any(text.startswith("#pragma once") for _, text in content_lines)
 
     # An include guard is characterized (among other criteria) by an #endif
-    # as the last content line. #endifs that are not on the last content line
+    # as the last content line. #endif's that are not on the last content line
     # could be parts of feature test macros or conditionally compiled features.
     line, text = content_lines[-1]
     if not text.startswith("#endif"):
         return guard
     guard.endif.update(line, text)
 
-    for line, text in enumerate(lines):
+    for line, text in content_lines:
         if text.startswith("#ifndef") and guard.ifndef.is_none():
             guard.ifndef.update(line, text)
         if text.startswith("#define") and guard.define.is_none():
