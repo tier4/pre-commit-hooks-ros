@@ -76,24 +76,33 @@ class IncludeGuard:
         for item in self.items():
             item.prepare(macro_name)
 
-    def wraps_whole_file(self, lines):
-        # A real include guard's #endif closes the file, so only blank lines may
-        # follow it. If anything else follows, the detected #ifndef/#define/#endif
-        # is not an include guard but some other conditional block.
-        return all(not line.strip() for line in lines[self.endif.line + 1 :])
-
 
 def get_include_guard_info(lines):
     guard = IncludeGuard()
+    content_lines = [(line, text) for line, text in enumerate(lines) if text.strip()))
+    
+    if not content_lines:
+        return guard
+
+    guard.has_pragma_once = any(
+            text.startswith("#pragma once") 
+            for _, text 
+            in enumerate(content_lines)
+    )
+
+    # An include guard is characterized (among other criteria) by an #endif
+    # as the last content line. #endifs that are not on the last content line
+    # could be parts of feature test macros or conditionally compiled features.
+    line, text = content_lines[-1]
+    if not text.startswith("#endif"):
+        return guard
+    guard.endif.update(line, text)
+
     for line, text in enumerate(lines):
-        if text.startswith("#pragma once"):
-            guard.has_pragma_once = True
         if text.startswith("#ifndef") and guard.ifndef.is_none():
             guard.ifndef.update(line, text)
         if text.startswith("#define") and guard.define.is_none():
             guard.define.update(line, text)
-        if text.startswith("#endif"):
-            guard.endif.update(line, text)
     return guard
 
 
@@ -127,12 +136,6 @@ def main(argv=None):
             if not guard.has_pragma_once:
                 print("No include guard in {}".format(filepath))
                 return_code = 1
-            continue
-        # A file that uses `#pragma once` is already guarded. Its #ifndef/#define
-        # block is only the include guard if it wraps the whole file; otherwise it
-        # is something else (e.g. a feature-test macro like `#ifndef _GNU_SOURCE`)
-        # and must be left untouched.
-        if guard.has_pragma_once and not guard.wraps_whole_file(lines):
             continue
         # Error and auto fix if the macro name is not correct.
         macro_name = get_include_guard_macro_name(filepath)
