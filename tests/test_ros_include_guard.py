@@ -17,6 +17,7 @@ cases_auto_fix = [
 
 cases_no_fix = [
     ("include/rospkg/pragma.only.hpp", 0),
+    ("include/rospkg/feature_macro.hpp", 0),
     ("include/rospkg/none.hpp", 1),
 ]
 
@@ -43,5 +44,7 @@ def test_auto_fix(target_file, datadir):
 @pytest.mark.parametrize(("target_file", "answer_code"), cases_no_fix)
 def test_no_fix(target_file, answer_code, datadir):
     target_path = datadir.joinpath(target_file)
+    original_text = target_path.read_text()
     return_code = ros_include_guard.main([str(target_path)])
     assert return_code == answer_code
+    assert target_path.read_text() == original_text

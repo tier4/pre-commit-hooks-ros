@@ -76,6 +76,12 @@ class IncludeGuard:
         for item in self.items():
             item.prepare(macro_name)
 
+    def wraps_whole_file(self, lines):
+        # A real include guard's #endif closes the file, so only blank lines may
+        # follow it. If anything else follows, the detected #ifndef/#define/#endif
+        # is not an include guard but some other conditional block.
+        return all(not line.strip() for line in lines[self.endif.line + 1 :])
+
 
 def get_include_guard_info(lines):
     guard = IncludeGuard()
@@ -121,6 +127,12 @@ def main(argv=None):
             if not guard.has_pragma_once:
                 print("No include guard in {}".format(filepath))
                 return_code = 1
+            continue
+        # A file that uses `#pragma once` is already guarded. Its #ifndef/#define
+        # block is only the include guard if it wraps the whole file; otherwise it
+        # is something else (e.g. a feature-test macro like `#ifndef _GNU_SOURCE`)
+        # and must be left untouched.
+        if guard.has_pragma_once and not guard.wraps_whole_file(lines):
             continue
         # Error and auto fix if the macro name is not correct.
         macro_name = get_include_guard_macro_name(filepath)
